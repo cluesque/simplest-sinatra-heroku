@@ -14,6 +14,10 @@ end
 get '/template' do
   slim :inline_template
 end
+
+get '/file' do
+  slim :file
+end
 __END__
 
 @@inline_template
