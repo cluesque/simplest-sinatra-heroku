@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'slim'
 require './github'
+require 'redcarpet'
 
 Slim::Engine.set_default_options :pretty => true
 
@@ -25,6 +26,12 @@ get '/issues' do
   @issues = GithubClient.issues
   slim :issues
 end
+
+get '/readme' do
+  markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
+  markdown.render(File.read(File.dirname(__FILE__) + '/README.md'))
+end
+
 __END__
 
 @@inline_template
