@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'slim'
+require './github'
 
 Slim::Engine.set_default_options :pretty => true
 
@@ -17,6 +18,12 @@ end
 
 get '/file' do
   slim :file
+end
+
+get '/issues' do
+  # @issues = GithubClient.issues('Inactive') # to filter by tag
+  @issues = GithubClient.issues
+  slim :issues
 end
 __END__
 

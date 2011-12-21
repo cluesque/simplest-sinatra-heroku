@@ -1,0 +1,15 @@
+table
+  thead
+    tr
+      th Number
+      th Title
+  tbody
+    - @issues.each do |issue|
+      tr
+        td
+          a href=issue['html_url']
+            = issue['number']
+        td = issue['title']
+      tr
+        td &nbsp;
+        td = issue['body']
